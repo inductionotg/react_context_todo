@@ -1,11 +1,15 @@
 import Todo from "./Todo";
-function TodoList({todos,deleteTodos,editTodos,updateToggle}){
+import { useTodoContext } from "./todo-create-context";
+function TodoList(){
+    const {todos} = useTodoContext()
     console.log(todos)
     return (
         <div>
             {todos.map((item)=>{
                 return (
-                    <Todo id={item.id} text={item.text} isFinished={item.isFinished} deleteTodos={ deleteTodos} editTodos={editTodos} updateToggle={updateToggle}/>
+                    <div key={item.id}>
+                        <Todo id={item.id} text={item.text} isFinished={item.isFinished} />
+                    </div>
                 )
             })}
         </div>

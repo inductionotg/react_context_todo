@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import './Todo.css'
-function Todo({isFinished,text,id,deleteTodos,editTodos,updateToggle}){
+import { useTodoContext } from './todo-create-context'
+function Todo({isFinished,text,id}){
     const [content,setContent]= useState(text)
     const [edit,setEdit]= useState(false)
+    const {deleteTodos,editTodos,updateToggle} = useTodoContext()
     console.log(id)
     return (
         <div className="todo-wrapper-container">
