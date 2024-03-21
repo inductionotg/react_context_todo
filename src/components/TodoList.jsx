@@ -1,11 +1,11 @@
 import Todo from "./Todo";
 import { useTodoContext } from "./todo-create-context";
 function TodoList(){
-    const {todos} = useTodoContext()
-    console.log(todos)
+    const {state} = useTodoContext()
+    console.log(state)
     return (
         <div>
-            {todos.map((item)=>{
+            {state.map((item)=>{
                 return (
                     <div key={item.id}>
                         <Todo id={item.id} text={item.text} isFinished={item.isFinished} />

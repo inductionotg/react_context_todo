@@ -4,11 +4,11 @@ import { useTodoContext } from './todo-create-context'
 function Todo({isFinished,text,id}){
     const [content,setContent]= useState(text)
     const [edit,setEdit]= useState(false)
-    const {deleteTodos,editTodos,updateToggle} = useTodoContext()
+    const {dispatch} = useTodoContext()
     console.log(id)
     return (
         <div className="todo-wrapper-container">
-                <input type="checkbox" checked={isFinished} onChange={()=>updateToggle(id,isFinished)}/>
+                <input type="checkbox" checked={isFinished} onChange={()=>dispatch({type:'handle_toggle',payload:{id: id, isFinished: isFinished}}) /*updateToggle(id,isFinished)*/}/>
                 {
                     edit?(
                         <input
@@ -24,9 +24,10 @@ function Todo({isFinished,text,id}){
                 <button onClick={()=>
                     {
                         setEdit(!edit)
-                        editTodos(id,content)
+                        dispatch({type:'edit_todo',payload:{id,content}})
+                        //editTodos(id,content)
                     }}>{edit?'Save':'Edit'}</button>
-                <button onClick={()=>deleteTodos(id)} >Delete</button>
+                <button onClick={()=>dispatch({type:'delete_todo',payload:{id}})/*deleteTodos(id)*/} >Delete</button>
         </div>
     )
 }

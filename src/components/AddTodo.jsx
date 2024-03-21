@@ -3,7 +3,7 @@ import { useTodoContext } from "./todo-create-context"
 
 function AddTodo(){
     const [addTodo,setAddTodo] = useState('')
-    const {AddTodos} = useTodoContext()
+    const {dispatch} = useTodoContext()
     return(
         <div>
             <input
@@ -12,7 +12,8 @@ function AddTodo(){
                 onChange={(e)=>setAddTodo(e.target.value)}
             />
             <button onClick={()=>
-                {AddTodos(addTodo)
+                {//AddTodos(addTodo)
+                dispatch({type:'add_todo',payload:{addTodo}})
                 setAddTodo('')}
                 }>Add Todo</button>
         </div>
